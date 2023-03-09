@@ -1,3 +1,10 @@
+insert into  `hive`.`erc_balances`.ownerof_log
+select 
+log 
+from `hive`.`erc_balances`.`etherscan_verified_contracts_v0`
+where REGEXP(log, 'function[\s]*ownerOf(?:(?!function).)*?\{(?:(?!function).)*?\}') 
+and log like '%721%';
+
 select 
 -- `offset`,
 -- REGEXP_EXTRACT(log, 'function ownerOf.{52}', 0)
